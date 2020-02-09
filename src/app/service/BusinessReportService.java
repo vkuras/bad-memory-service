@@ -11,16 +11,11 @@ import java.util.Random;
 import java.util.stream.IntStream;
 @Component
 public class BusinessReportService {
-    private List<BusinessReportDTO> reports;
-    public BusinessReportService(){
-        reports=new ArrayList<>();
-    }
+    private BusinessReportDTO report = new BusinessReportDTO();
+
 
     public BusinessReportDTO getLastReport() {
-        if(reports.isEmpty()){
-            return new BusinessReportDTO();
-        }
-        return reports.get(reports.size()-1);
+        return report;
     }
 
     @Scheduled(fixedRate = 500)
@@ -31,7 +26,7 @@ public class BusinessReportService {
                 .forEach(index -> {
                     reportDTO.getCarDTOS().add(createCar());
                 });
-        reports.add(reportDTO);
+        report = reportDTO;
     }
 
     private CarDTO createCar() {
