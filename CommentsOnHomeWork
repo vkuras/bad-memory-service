@@ -1,0 +1,7 @@
+After uploading GC logs and anylizing them I recognized that for 10 min of application running garbage collection was running 5-6 times but after run there was no jumps in the graph, which means no data was cleaned, which could mean that all objects created were in use or a lot of streams were leave opened
+After analyzing idea memory logs in debug mode I find out that there are a lot of CarDTO objects created
+
+To fix this I adressed BusinessReportService and found out that sheduled report creating was taken place without a single use. I removed sheduled annotation and added to method "getLastReport" possibility to create new report on demand if no reported are accecible
+
+To fix 500 on CountDownService I removed recursively called method and replaces it with loop inside of method. Not serivce is running even if number is big, but running a bit slow
+

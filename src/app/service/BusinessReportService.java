@@ -18,12 +18,11 @@ public class BusinessReportService {
 
     public BusinessReportDTO getLastReport() {
         if(reports.isEmpty()){
-            return new BusinessReportDTO();
+            createReport();
         }
         return reports.get(reports.size()-1);
     }
 
-    @Scheduled(fixedRate = 500)
     public void createReport(){
         int amountOfCars= getNumberBetween(5000000,9000000);
         BusinessReportDTO reportDTO = new BusinessReportDTO();

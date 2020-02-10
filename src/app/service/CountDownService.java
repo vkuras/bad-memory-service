@@ -12,13 +12,10 @@ public class CountDownService {
        return countDownDTO;
     }
 
-    private void decrement(CountDownDTO countDownDTO, Integer number) {
-        countDownDTO.add(number);
-        if(number==0){
-            return;
-        }
-        else {
-            decrement(countDownDTO, number-1);
+    private void decrement(CountDownDTO countDownDTO, int number) {
+        for (int i = 0; i <= number; i++)
+        {
+            countDownDTO.add(i);
         }
     }
 
