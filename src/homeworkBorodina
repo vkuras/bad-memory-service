@@ -1,0 +1,14 @@
+GARBAGE COLLECTOR ANALYSIS
+As I can see from GC easy report, memory is not being released, it keeps piling up. The heap size keeps on increasing.
+That means that there is memory leak.
+
+COUNTDOWN ISSUE
+The root cause of the countdown issue was that recursion didn't work well in countdown case. As in recursion case stack keeps piling up
+while the app is counting down numbers. And it causes java.lang.StackOverflowError.
+
+OOM ISSUE
+When analyzing where the memory is going, I found out that the amount of reports is increasing and all reports are stored in ArrayList.
+Which causes memory loss.
+The only solution I could find is not to store reports in array and to store only last one. Endpoint we use gives us only las report so I
+decided to store only it.
+
